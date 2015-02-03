@@ -31,36 +31,29 @@ var unitsSoldThisMonth; //how many units were sold this month
 var unitsOnHand;  //how many units are in stock
 var theBuy;  //this is original purchase total 
 
-//Assign Values to Variables
-// unite = this.unitName;
-// unitPrice = this.unitPrice;
-// unitCost = this.unitCost;
-// unitsSold = this.unitsSold;
-// unitMargin = unitPrice - unitCost;
-// totalRevenue = unitPrice * unitsSold;
-// totalCost = unitCost * unitsSold;
-// totalProfit = totalRevenue - totalCost;
 //Formulas
 ///////////ACTIVE///////ACTIVE///////////////////
 //Compute Shirt Object Functions
-totalRevenue = function (shirt, store) {
-		this.totalRevenue = (shirt.unitPrice * shirt.unitsSold);
-		// return "Total Revenue for " + shirt.unitName + " is: $" + (shirt.unitPrice * shirt.unitsSold);
-	};
-totalCost = function (shirt, store) {
-		return "Total Cost for " + shirt.unitName + " is: $" + (shirt.unitCost * shirt.unitsSold);
-	};
-unitMargin = function (shirt, store) {
-		return "The Margin for " + shirt.unitName + " is " + (shirt.unitPrice - shirt.unitCost) + " or %" ((shirt.unitPrice - shirt.unitCost)/shirt.unitPrice);
-	};
-unitProfit = function (shirt, store) {
-		return (this.price - this.margin) * this.unitsSold;
-	};
+totalRevenue = function (shirt) {
+		return "Total Revenue is: $" + (shirt.unitPrice * shirt.unitsSold);
+};
 
+totalCost = function (shirt) {
+		return "Total Cost is: $" + (shirt.unitCost * shirt.unitsSold);
+};
+
+unitMargin = function (shirt) {
+		return "The margin per unit is $" + (shirt.unitPrice - shirt.unitCost);
+};
+
+unitProfit = function (shirt) {
+	return totalRevenue - totalCost;
+};
 
 //Global Change Shirt Object Methods
 var changeUnitName = function (newName) {
-	this.unitName = newName;
+	var toString = newName.string();
+	this.unitName = toString;
 };
 var changePrice = function (newPrice) {
 	this.unitPrice = newPrice;
@@ -75,7 +68,7 @@ var changeUnitsSold = function (unitsSold) {
 //Shirt Object Constructor
 function shirt(name, price, cost, unitsSold) {
 //Standard Propertie Values
-	this.unitName = "name";
+	this.unitName = name;
 	this.unitPrice = price;
 	this.unitCost = cost;
 	this.unitsSold = unitsSold;
@@ -86,26 +79,38 @@ function shirt(name, price, cost, unitsSold) {
 	this.changePrice = changePrice;
 	this.changeCost = changeCost;
 	this.changeUnitsSold = changeUnitsSold;
-//Computation Methods
-	this.unitMargin = function () {
-		return "this.currencyCode" + price - cost;
-	};
-	this.unitMarginPcent = function () {
-		return (price - cost) / price;
-	};
-	this.unitMarkup = function () {
-		alert(price - cost) / cost;
-	};
-	this.totalRevenue = function () {
-		return price * unitsSold;
-	};
-	this.totalCost = function () {
-		return cost * unitsSold;
-	};
-	this.totalProfit = function () {
-		return (price - cost) * unitsSold;	
-	};
+	this.totalRevenue = function (shirt) {
+		return "Total Revenue is: $" + (shirt.unitPrice * shirt.unitsSold);
 };
+};
+
+var GAM = new shirt("GAM", 30, 5, 100);
+var boom = new shirt("Boom", 25, 5, 100);
+var goTime = new shirt("Go Time", 18, 6, 200);
+
+var shirtsArray = [GAM, boom, goTime];
+//Computation Methods
+	// this.unitMargin = function () {
+	// 	return "this.currencyCode" + price - cost;
+	// };
+	// this.unitMarginPcent = function () {
+	// 	return (price - cost) / price;
+	// };
+	// this.unitMarkup = function () {
+	// 	alert(price - cost) / cost;
+	// };
+	// this.totalRevenue = function () {
+	// 	return price * unitsSold;
+	// };
+	// this.totalCost = function () {
+	// 	return cost * unitsSold;
+	// };
+	// this.totalProfit = function () {
+	// 	return (price - cost) * unitsSold;	
+	// };
+
+
+
 
 function compareProfitShirts (shirt1, shirt2) { 
 	if (shirt1.totalProfit > shirt2.totalProfit) {
