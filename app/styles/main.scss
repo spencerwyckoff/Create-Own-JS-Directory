@@ -9,18 +9,36 @@ body {
   color: #333;
 }
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 600px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
-  h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+h1 {
+  @include span-columns(12);
+  margin: 3% auto;
+  text-align: center;
+}
+
+form {
+  @include span-columns(10);
+  input {
+    @include span-columns(8);
+    @include shift(1);
+    display: block;
+    font-style: 4em;
+    margin: 2%;
+    padding: 3%;
+    text-align: left;
   }
+  button {
+    @include span-columns(8);
+    display: block;
+    font-style: 4em;
+    margin: 2%;
+    padding: 3%;
+    text-align: center;
+    width: 25%;
+  }
+}
+
+
+.vid-container {
+  @include span-columns(12);
+
 }
