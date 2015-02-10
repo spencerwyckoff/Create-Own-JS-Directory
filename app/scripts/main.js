@@ -8,6 +8,16 @@
 	>Total Profit = (Revenue - Cost)/Units Sold
 5. We take that answer and return it to it's corresponding box
 */
+(function () {
+
+'use strict';
+
+}());
+
+//DOM Manipulation
+$('button').on('click', function(event) {
+	event.preventDefault();
+});
 
 //Declare Variables
 ///////////ACTIVE///////ACTIVE///////////////////
@@ -52,8 +62,7 @@ unitProfit = function (shirt) {
 
 //Global Change Shirt Object Methods
 var changeUnitName = function (newName) {
-	var toString = newName.string();
-	this.unitName = toString;
+	this.unitName = newName;
 };
 var changePrice = function (newPrice) {
 	this.unitPrice = newPrice;
@@ -66,7 +75,7 @@ var changeUnitsSold = function (unitsSold) {
 };
 
 //Shirt Object Constructor
-function shirt(name, price, cost, unitsSold) {
+var Shirt = function (name, price, cost, unitsSold) {
 //Standard Propertie Values
 	this.unitName = name;
 	this.unitPrice = price;
@@ -75,41 +84,31 @@ function shirt(name, price, cost, unitsSold) {
 	this.currency = "USD";
 	this.currencyCode = "$";
 //Change Property Value Methods
-	this.unitName = changeUnitName;
-	this.changePrice = changePrice;
-	this.changeCost = changeCost;
-	this.changeUnitsSold = changeUnitsSold;
-	this.totalRevenue = function (shirt) {
-		return "Total Revenue is: $" + (shirt.unitPrice * shirt.unitsSold);
+	this.changeName = function (newName) {
+		this.unitName = newName;
+	};
+	this.changePrice = function (newPrice) {
+		this.unitPrice = newPrice;
+	};
+	this.changeCost = function (newCost) {
+		this.unitCost = newCost;
+	};
+	this.changeUnitsSold = function (newUnitsSold) {
+		this.unitsSold = newUnitsSold;
+	};
 };
-};
 
-var GAM = new shirt("GAM", 30, 5, 100);
-var boom = new shirt("Boom", 25, 5, 100);
-var goTime = new shirt("Go Time", 18, 6, 200);
+//Add Some Shirts to shirtInventory
+var shirtInventory = [];
 
-var shirtsArray = [GAM, boom, goTime];
-//Computation Methods
-	// this.unitMargin = function () {
-	// 	return "this.currencyCode" + price - cost;
-	// };
-	// this.unitMarginPcent = function () {
-	// 	return (price - cost) / price;
-	// };
-	// this.unitMarkup = function () {
-	// 	alert(price - cost) / cost;
-	// };
-	// this.totalRevenue = function () {
-	// 	return price * unitsSold;
-	// };
-	// this.totalCost = function () {
-	// 	return cost * unitsSold;
-	// };
-	// this.totalProfit = function () {
-	// 	return (price - cost) * unitsSold;	
-	// };
+var GAM = new Shirt("GAM", 30, 5, 100);
+	shirtInventory.push(GAM);
 
+var boom = new Shirt("Boom", 25, 5, 100);
+	shirtInventory.push(boom);
 
+var goTime = new Shirt("Go Time", 18, 6, 200);
+	shirtInventory.push(goTime);
 
 
 function compareProfitShirts (shirt1, shirt2) { 
@@ -144,124 +143,6 @@ store = {
 	currencyCode: "$",
 	inventory: [],
 };
-//Ability to Change Property Values
-	// location.storeName = "CFNA";
-	// location.address1 = "1730 Taylor Street NW";
-	// location.address2 = "";
-	// location.city = "Atlanta";
-	// location.state = "GA";
-	// locaiton.zipCode = "30318";
-	// location.url = "http://www.crossfitnorthatlanta.com";
-	// location.phone = "(404) 355-4500";
-	// location.salesTax = .07;
-	// location.currency = "USD";
-	// location.currencyCode = "$";
-	// location.inventory = [];
 
-// {function (unitName, unitPrice, unitCost, unitsSold) {
-
-
-
-
-
-
-
-
-// var shirtsArray = [];
-// shirtsArray.push(newShirt);
-
-// $('.data-entry').submit(function() {
-// 	console.log("i see you");
-// 	event.preventDefault();
-
-// });
-
-
-
-
-// // INSTAGRAM API
-
-// var dubsmash = 'https://api.instagram.com/v1/tags/dubsmashusa/media/recent?client_id=adcf4211a05c4d2b9290d57b3be5b155';
-
-
-// $.ajax({
-//   dataType: "jsonp",
-//   url: dubsmash,
-//   success: function (data) {
-//     search_results = data;
-
-// 	  var vid_urls = _.pluck(data.data, videos.standard_resolution) 
-// 	  // {
-// 	  // 		console.log(d.videos.standard_resolution.url);
-// 	  //   	return d.videos.standard_resolution.url;	
-// 	  //   });
-
-//     for (var i = 0; i < 3; i++) {
-//       var vid = '<h4>Today\'s 3 Random Dubsmashes!</h4>' + '<video width="320" height="240" class="vid" controls><source src="' + vid_urls[i] + '" type="video/mp4"></video>';
-
-//       $('.vid-container').append(vid);
-//     }
-//   }
-// });
-
-// <video width="320" height="240" controls>
-//   <source src="movie.mp4" type="video/mp4">
-//   <source src="movie.ogg" type="video/ogg">
-//   Your browser does not support the video tag.
-// </video>
-
-// //CAREER
-
-// function jobInfo (employer, position, annualSalary, startDate) {
-// 	this.employer = employer;
-// 	this.position = position;
-// 	this.annualSalary = annualSalary;
-// 	this.startDate = startDate;
-// }
-
-
-// var smallBusiness = {
-// 	annualIncome: 1000000,
-
-// }
-
-
-// var selfEmployedMinTax = function (annualIncome) {
-// 	return annualIncome * .3
-// }
-
-// //MATH FUNCTIONS
-
-// var add2 = function (a, b) {
-//   return a + b
-// };
-
-// var add3 = function (a, b, c) {
-//   return a + b + c
-// };
-
-// var subtract2 = function (startValue, minusValue) {
-//   return startValue - minusValue
-// };
-
-// var smallestNum = function (a, b, c) {
-//   if (a <= b && a <= c) {
-//   	return a;
-//   } else if (b <= a && b <= c) {
-//   	return b;
-//   } else {
-//   	return c; 
-//   };
-// };
-
-// var greatestNum = function (a, b, c) {
-//   if (a >= b && a >= c) {
-//   	return a;
-//   } else if (b >= a && b >= c) {
-//   	return b;
-//   } else {
-//   	return c; 
-//   };
-// };
 
 
